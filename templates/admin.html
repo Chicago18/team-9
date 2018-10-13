@@ -105,8 +105,9 @@
         }
     </script>
 
-    <div class = "btn-group-vertical btn-block">
-        <button type="button" class = "btn btn-primary" style="margin-bottom:20px">Enrollment</button>
+    <div class = "btn-block">
+        <button type="button" class = "btn btn-primary">Enrollment</button>
+        <button type="button" onclick="window.location.href='{{ url_for('addwkst') }}';" class="btn btn-danger">Add Worksheet</button>
     </div>
 </div>
 
