@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -21,50 +23,72 @@
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Month', 'Math', 'English', 'History'],
-                ['September',  87,      82, 75],
-                ['October',  84,      78, 73],
-                ['November',  89,       85, 77],
-                ['December',  91,      83,82],
-                ['January',  94,      83, 75],
-                ['February',  92,      89, 81],
-                ['March',  91,      80, 86],
-                ['April',  93,      89, 83],
+                ['Sept',  87,      82, 75],
+                ['Oct',  84,      78, 73],
+                ['Nov',  89,       85, 77],
+                ['Dec',  91,      83,82],
+                ['Jan',  94,      83, 75],
+                ['Feb',  92,      89, 81],
+                ['Mar',  91,      80, 86],
+                ['Apr',  93,      89, 83],
                 ['May',  90,      87,87],
                 ['June',  94,      83, 89],
                 ['July',  92,      85, 84],
-                ['August',  95,      84, 90],
+                ['Aug',  95,      84, 90],
             ]);
 
             var options = {
-                title: 'Performance\n',
+                title: 'Vincent\'s Performance\n',
                 curveType: 'function',
-                legend: { position: 'bottom' },
+                legend: { position: 'right' },
+                width: 1300,
+                height: 600,
                 titleTextStyle: {
                     fontSize: 32, // 12, 18 whatever you want (don't specify px)
-
                 }
             };
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
             chart.draw(data, options);
             var data2 = google.visualization.arrayToDataTable([
                 ['Month', 'Math', 'English', 'History'],
-                ['September',  92,      87, 82],
-                ['October',  94,      78, 73],
-                ['November',  91,       85, 77],
-                ['December',  82,      94,94],
-                ['January',  76,      92, 75],
-                ['February',  82,      89, 81],
-                ['March',  87,      81, 86],
-                ['April',  93,      89, 83],
+                ['Sept',  92,      87, 82],
+                ['Oct',  94,      78, 73],
+                ['Nov',  91,       85, 77],
+                ['Dec',  82,      94,94],
+                ['Jan',  76,      92, 75],
+                ['Feb',  82,      89, 81],
+                ['Mar',  87,      81, 86],
+                ['Apr',  93,      89, 83],
                 ['May',  90,      87,87],
                 ['June',  92,      83, 94],
                 ['July',  94,      85, 84],
-                ['August',  91,      84, 87],
+                ['Aug',  91,      84, 87],
             ]);
-            var chart2 = new google.visualization.LineChart(document.getElementById('tab2'));
-            chart2.draw(data2, options);
+            var options2 = {
+                title: 'Kelly\'s Performance\n',
+                curveType: 'function',
+                legend: { position: 'right' },
+                width: 1300,
+                height: 600,
+                titleTextStyle: {
+                    fontSize: 32, // 12, 18 whatever you want (don't specify px)
+                }
+            };
+            var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+            chart2.draw(data2, options2);
         }
+    $(document).ready(function() {
+        $("#kelly").removeClass("active");
+    });
     </script>
+
+    <style>
+    #enrollnew {
+        position: absolute;
+        display: inline-block;
+        bottom: 0;
+    }
+    </style>
 
 </head>
 <body>
@@ -72,47 +96,52 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top" id="mainNav">
     <div class="container justify-content-start">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <img src="cmaa.gif" width="50" height="50" class="d-inline-block align-top" alt="">
+            <img src="{{ url_for('static', filename='img/cmaa.gif') }}" width="50" height="50" class="d-inline-block align-top" alt="">
             <a class="text-white" style="font-size:24px">Chinese Mutual Aid Association</a>
         </a>
 
-    </div>
+    </div><ul class="navbar-nav">
+      <li class="nav-item" id="logout" style="padding-right:200px;font-size:18px">
+        <a class="nav-link" href="/">Logout</a></li>
+    </ul>
 </nav><br>
 <h4 style="padding-left:40px;padding-top: 0px">My Kids</h4>
 <div class="row">
 
-    <div class="col-md-2" style="padding-left:40px">
+    <div class="col-md-2" style="padding-left:40px;min-height: 80vh">
         <ul class="nav nav-pills nav-pills-rose flex-column">
-          <li id="vincent" class="nav-item"><a class="nav-link active" href="#curve_chart" data-toggle="tab">Vincent</a></li>
+          <li id="vincent" class="nav-item"><a class="nav-link" href="#tab1" data-toggle="tab">Vincent</a></li>
           <li id="kelly" class="nav-item"><a class="nav-link" href="#tab2" data-toggle="tab">Kelly</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tab3" data-toggle="tab">Options</a></li>
+          <ul id="enrollnew" class="nav nav-sidebar">
+              <li><button onclick="window.location.href='{{ url_for('forms') }}';" class="btn btn-dark" style="font-size:28px;"><i class="far fa-plus-square"></i>&nbsp;Enroll</button></li>
+          </ul>
         </ul>
+
     </div>
     <div class="col-md-8">
         <div class="tab-content">
-            <div class="tab-pane active" id="curve_chart" align="center" style="height: 540px; width: 1200px; margin-left:0px;position:absolute;">
+            <div class="tab-pane" id="tab1" align="center" style="height: 500px; width: 1300px; position:absolute;">
+                <div id="curve_chart" align="center" style="height: 500px; width: 1300px; position:absolute;">
+                </div>
+                <div class="container text-left" style="width:1200px"> 
+                <h3 style="padding-top: 600px;">Teacher Feedback: </h3>
+                <p style="font-size:18px">Vincent needs some more work on History but overall he is doing well!</p>
             </div>
-            <div class="tab-pane active" id="tab2" align="center" style="height: 540px; width: 1200px; margin-left:0px;position:absolute;">
             </div>
-            <div class="tab-pane" id="tab3">
-                Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                <br><br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+            <div class="tab-pane" id="tab2" align="center" style="height: 500px; width: 1300px; margin-left:0px;position:absolute;">
+                <div id="curve_chart2" align="center" style="height: 500px; width: 1300px; margin-left:0px;position:absolute;">
+                </div>
+                <div class="container text-left" style="width:1200px"> 
+                <h3 style="padding-top: 600px;">Teacher Feedback: </h3>
+                <p style="font-size:18px">Kelly is doing great! She may need a bit of help with her math homework.</p>
             </div>
         </div>
     </div>
 </div>
 
-<!--
-<div class="container">
-    <div class = "btn-group-vertical btn-block">
-        <button type="button" class = "btn btn-primary" style= "margin-bottom:20px; margin-left:160px; width: 200px">Go back</button>
-    </div>
-</div>
--->
-<script>
-    $(document).ready(function() {
-        $("#kelly").removeClass("active");
-    });
-</script>
+
+
+
+
 </body>
 </html>

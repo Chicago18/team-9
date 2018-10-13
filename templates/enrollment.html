@@ -36,7 +36,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top" id="mainNav">
       <div class="container justify-content-start">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
-          <img src="cmaa.gif" width="50" height="50" class="d-inline-block align-top" alt="">
+          <img src="{{ url_for('static', filename='img/cmaa.gif') }}" width="50" height="50" class="d-inline-block align-top" alt="">
           <a class="text-white" style="font-size:24px">Chinese Mutual Aid Association</a>
         </a>
         
@@ -51,7 +51,7 @@
     <h3>Enrollment Checklist</h3>
   </div>
       <ul class="list-group">
-        <li class="list-group-item" id="form1">Client Intake Form</li>
+        <li onclick="window.location.href='{{ url_for('clientform') }}';" class="list-group-item" id="form1">Client Intake Form</li>
         <li class="list-group-item" id="form2">Family Income Level</li>
         <li class="list-group-item" id="form3">Parent Consent Form</li>
         <li class="list-group-item" id="form4">Family Income Level</li>

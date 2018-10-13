@@ -1,6 +1,7 @@
 from flask import Flask, redirect, request, render_template, url_for, session, g
 import os
 import json
+import sys
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -11,17 +12,17 @@ app.secret_key = os.urandom(24)
 # }
 
 users = {
-    'person1': 
+    'admin': 
         {
             'password': 'password',
             'type': 'admin'
         },
-    'person2': 
+    'student': 
         {
             'password': 'password',
             'type': 'student'
         },
-    'person3':         
+    'parent':         
         {
             'password': 'password',
             'type': 'parent'
@@ -57,7 +58,7 @@ def login():
             if users[username]['type'] == "student":
                 return redirect(url_for('student'))
             elif users[username]['type'] == "parent":
-                return redirect(url_for('parent'))
+                return redirect(url_for('grades'))
             elif users[username]['type'] == "admin":
                 return redirect(url_for('admin'))
 
@@ -72,9 +73,7 @@ def forms():
 @app.route('/student', methods=['GET'])
 def student():
     if g.user:
-        with open('Unit.json') as f:
-            unit = json.load(f)
-            return render_template('students.html', unit=unit)
+        return render_template('studentoptions.html')
 
     return redirect('login')
 
@@ -86,11 +85,56 @@ def parent():
     
     return redirect('login')
 
+@app.route('/grades', methods=['GET'])
+def grades():
+    if g.user:
+            return render_template('grades.html')
+    
+    return redirect('login')
+
+@app.route('/clientform', methods=['GET'])
+def clientform():
+    if g.user:
+            return render_template('clientintake.html')
+    
+    return redirect('login')
+
 
 @app.route('/admin', methods=['GET'])
 def admin():
     if g.user:
         return render_template('admin.html')
+
+    return redirect('login')
+
+
+@app.route('/studentoptions', methods=['GET'])
+def studentoptions():
+    if g.user:
+        return render_template('studentoptions.html')
+
+    return redirect('login')
+
+@app.route('/lessons', methods=['GET'])
+def lessons():
+    if g.user:
+        with open('Unit.json') as f:
+            unit = json.load(f)
+            return render_template('lessons.html', unit=unit)
+
+    return redirect('login')
+
+@app.route('/gameoptions', methods=['GET'])
+def gameoptions():
+    if g.user:
+        return render_template('gameoptions.html')
+
+    return redirect('login')
+
+@app.route('/games', methods=['GET'])
+def games():
+    if g.user:
+        return render_template('game.html')
 
     return redirect('login')
 

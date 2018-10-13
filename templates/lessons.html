@@ -10,6 +10,8 @@
 
     <title>CMAA Portal</title>
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
     <!--Bootstrap, jQuery CDN-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -29,26 +31,37 @@
 
     </div>
 </nav>
+
 <div class="container">
-    <h1>Lessons</h1>
+    <h1 class="display-4">Lessons</h1>
+</div>
+
+<div class="container lessons">
     {% set ns = namespace(loop=false) %}
     {% for lesson in unit if not loop %}
         {% for i in range(unit[lesson]|length) %}
+            <div class="{{unit[lesson][i].type}}">
             {% if unit[lesson][i].type == "lesson" %}
+                <h2>{{unit[lesson][i].title}}</h2>
+                {% set text = unit[lesson][i].text.split('\n') %}
+                {% for para in text %}
+                <p>{{para}}</p>
+                {% endfor %}
 
-
-
-
-                <p>Lesson!</p>
                 <!-- Put Lesson Template Here -->
-
-
 
             {% elif unit[lesson][i].type == "mc" %}
 
+                <div class="mcq">
+                    <h5>{{unit[lesson][i].question}}</h5>
 
+                    <button class="mca" onclick="mc(this, 'a', '{{unit[lesson][i].answer}}')">{{unit[lesson][i].a}}</button>
+                    <button class="mca" onclick="mc(this, 'b', '{{unit[lesson][i].answer}}')">{{unit[lesson][i].b}}</button>
+                    <button class="mca" onclick="mc(this, 'c', '{{unit[lesson][i].answer}}')">{{unit[lesson][i].c}}</button>
+                    <button class="mca" onclick="mc(this, 'd', '{{unit[lesson][i].answer}}')">{{unit[lesson][i].d}}</button>
 
-                <p>Multiple Choice</p>
+                    <div class="answer hidden alert alert-info" role="alert"><p>{{unit[lesson][i].explanation}}</p></div>
+                </div>
                 <!-- Put Multiple choice Template Here -->
 
 
@@ -63,25 +76,16 @@
 
 
             {% endif %}
-
-
-
-
-
-
-
-
-
             {% if not ns.loop %}
                 {% set ns.loop = true %}
             {% endif %}
+            </div>
         {% endfor %}
     {% endfor %}
 
 </div>
 
-
-
+<div class="container"><button id="back" type="button" onclick="window.location.href='{{ url_for('studentoptions') }}';" class="btn btn-lg btn-secondary">Back</button></div>
 
 <!-- Footer
 <footer class="py-5 bg-danger">
@@ -90,6 +94,17 @@
   </div>
 </footer>-->
 
-</body>
+<script>
 
+    function mc(el, clicked, answer) {
+        if (clicked == answer) {
+            el.classList.add('correct');
+            el.parentElement.getElementsByClassName('answer')[0].classList.remove('hidden');
+        } else {
+            el.classList.add('wrong');
+        }
+    }
+</script>
+
+</body>
 </html>
