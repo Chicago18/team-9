@@ -23,7 +23,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top" id="mainNav">
     <div class="container justify-content-start">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <img src="cmaa.gif" width="50" height="50" class="d-inline-block align-top" alt="">
+            <img src="{{ url_for('static', filename='img/cmaa.gif') }}" width="50" height="50" class="d-inline-block align-top" alt="">
             <a class="text-white" style="font-size:24px">Chinese Mutual Aid Association</a>
         </a>
 
@@ -31,22 +31,19 @@
 </nav>
 <div class="container">
     <h1>Games</h1>
-    <div class = "btn-group-vertical btn-block">
-        <button type="button" class = "btn btn-primary" style="margin-bottom:20px">img1</button>
-        <button type="button" class = "btn btn-primary" style="margin-bottom:20px">img2</button>
+    <div class = "btn-group-horizonal btn-block">
+        <img src= "{{ url_for('static', filename='img/math1.png') }}"  height="300">
+        <img src= "{{ url_for('static', filename='img/math2.png') }}"  height="300">
+
     </div>
 
 </div>
 
 
 
+<div class="container"><button id="back" type="button" onclick="window.location.href='{{ url_for('studentoptions') }}';" class="btn btn-lg btn-secondary">Back</button></div>
 
-<!-- Footer
-<footer class="py-5 bg-danger">
-  <div class="container">
-    <p class="m-0 text-center text-white">Code for Good Chicago 2018</p>
-  </div>
-</footer>-->
+
 
 </body>
 
