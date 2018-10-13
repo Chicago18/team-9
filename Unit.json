@@ -1,0 +1,34 @@
+{
+  "unit": [
+    {
+      "type": "lesson",
+      "title": "Multiplication",
+      "text": "Multiplication is when you take one number and add it together a number of times.\nExample:\n5 multiplied by 4 = 5 + 5 + 5 + 5 = 20\nWe took the number 5 and added it together 4 times. This is why multiplication is sometimes called 'times'.\nMore examples:\n7 x 3 = 7 + 7 + 7 = 21\n2 x 1 = 2\n3 x 6 = 3 + 3 + 3 + 3 + 3 + 3 = 18"
+    },
+    {
+      "type": "mc",
+      "question": "What is 4 x 6?",
+      "a": 16,
+      "b": 12,
+      "c": 24,
+      "d": 26,
+      "answer": "c",
+      "explanation": "4 x 6 is essentially 4 + 4 + 4 + 4 + 4 + 4 = 24"
+    },
+    {
+      "type": "lesson",
+      "title": "Different Multiplication Signs",
+      "text": "There are a few different signs that people use to indicate multiplication. The most common is the 'x' sign, but sometimes people use a '*' sign or other symbols. Here are some ways to indicate 5 multiplied by 4.\n5 x 4\n5 * 4\n5 times 4\nSometimes when people use variables in multiplication they will just put the variables next to each other to indicate multiplication. Here are a few examples: \nab = a x b\n(a +1)(b + 1) = (a +1) x (b + 1)"
+    },
+    {
+      "type": "mc",
+      "question": "What is the same as 3 x 5?",
+      "a": "3(5)",
+      "b": "3 * 5",
+      "c": "Neither A nor B",
+      "d": "Both A and B",
+      "answer": "d",
+      "explanation": "3 x 5 is the same as 3(5) and 3 * 5"
+    }
+  ]
+}
