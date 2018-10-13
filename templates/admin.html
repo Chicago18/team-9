@@ -18,13 +18,58 @@
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Month', 'Math', 'English', 'History'],
+                ['Sept',  87,      82, 75],
+                ['Oct',  84,      78, 73],
+                ['Nov',  89,       85, 77],
+                ['Dec',  91,      83,82],
+                ['Jan',  94,      83, 75],
+                ['Feb',  92,      89, 81],
+            ]);
+
+            var options = {
+                curveType: 'function',
+                legend: { position: 'right' },
+                width: 800,
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('chartOne'));
+            chart.draw(data, options);
+            var data2 = google.visualization.arrayToDataTable([
+                ['Month', 'Math', 'English', 'History'],
+                ['Sept',  92,      87, 82],
+                ['Oct',  94,      78, 73],
+                ['Nov',  91,       85, 77],
+                ['Dec',  82,      94,94],
+                ['Jan',  76,      92, 75],
+                ['Feb',  82,      89, 81],
+            ]);
+            var chart2 = new google.visualization.LineChart(document.getElementById('chartTwo'));
+            chart2.draw(data2, options);
+            var chart3 = new google.visualization.LineChart(document.getElementById('chartThree'));
+            chart3.draw(data,options);
+            var chart4 = new google.visualization.LineChart(document.getElementById('chartFour'));
+            chart4.draw(data2,options);
+            var chart5 = new google.visualization.LineChart(document.getElementById('chartFive'));
+            chart5.draw(data,options);
+            var chart6 = new google.visualization.LineChart(document.getElementById('chartSix'));
+            chart6.draw(data2,options);
+            var chart7 = new google.visualization.LineChart(document.getElementById('chartSeven'));
+            chart7.draw(data,options);
+        }</script>
     <style>
         * {
             box-sizing: border-box;
         }
 
         #myInput {
-            background-image: url('/css/searchicon.png');
             background-position: 10px 12px;
             background-repeat: no-repeat;
             width: 100%;
@@ -55,6 +100,7 @@
             background-color: #eee;
         }
     </style>
+
 </head>
 
 <body id="page-top">
@@ -73,29 +119,135 @@
 
 <div class="container">
     <h1>Admin Panel</h1>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..." title="Type in a name">
 
-    <ul id="myUL">
-        <li><a href="#">Adele</a></li>
-        <li><a href="#">Agnes</a></li>
 
-        <li><a href="#">Billy</a></li>
-        <li><a href="#">Bob</a></li>
+<div class="accordion" id="accordions">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:black">
+          Adele
+        </button>
+      </h5>
+    </div>
+    <div id="collapseOne" class="collapse collapsed" aria-labelledby="headingOne" data-parent="#accordions">
+      <div class="card-body" id="adele">
+        <div id="chartOne"></div>
+        <form id="form" name="name">Feedback: <input name="name" type="text" style="width:500px">&nbsp;<button class="btn btn-primary btn-sm">Submit</button></form>
+      </div>
+    </div>
+  </div>
 
-        <li><a href="#">Calvin</a></li>
-        <li><a href="#">Christina</a></li>
-        <li><a href="#">Cindy</a></li>
-    </ul>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color:black">
+          Agnes
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordions">
+      <div class="card-body" id="agnes">
+        <div id="chartTwo"></div>
+        Feedback: <input name="name" type="text" style="width:500px">&nbsp;<button class="btn btn-primary btn-sm">Submit</button></form>
+      </div>
+    </div>
+  </div>
 
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="color:black">
+          Billy
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordions">
+      <div class="card-body" id="billy">
+        <div id="chartThree"></div>
+        Feedback: <input name="name" type="text" style="width:500px">&nbsp;<button class="btn btn-primary btn-sm">Submit</button></form>
+      </div>
+    </div>
+  </div>
+
+<div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="color:black">
+          Bob
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordions">
+      <div class="card-body" id="bob">
+        <div id="chartFour"></div>
+        Feedback: <input name="name" type="text" style="width:500px">&nbsp;<button class="btn btn-primary btn-sm">Submit</button></form>
+      </div>
+    </div>
+  </div>
+
+<div class="card">
+    <div class="card-header" id="headingFive">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="color:black">
+          Calvin
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordions">
+      <div class="card-body" id="calvin">
+        <div id="chartFive"></div>
+        Feedback: <input name="name" type="text" style="width:500px">&nbsp;<button class="btn btn-primary btn-sm">Submit</button></form>
+      </div>
+    </div>
+  </div>
+
+<div class="card">
+    <div class="card-header" id="headingSix">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix" style="color:black">
+          Christina
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordions">
+      <div class="card-body" id="christina">
+        <div id="chartSix"></div>
+        Feedback: <input name="name" type="text" style="width:500px">&nbsp;<button class="btn btn-primary btn-sm">Submit</button></form>
+      </div>
+    </div>
+  </div>
+
+<div class="card">
+    <div class="card-header" id="headingSeven">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven" style="color:black">
+          Cindy
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordions">
+      <div class="card-body" id="cindy">
+        <div id="chartSeven"></div>
+        Feedback: <input name="name" type="text" style="width:500px">&nbsp;<button class="btn btn-primary btn-sm">Submit</button></form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class = "btn-block">
+    <button type="button" class = "btn btn-primary">Enrollment</button>
+    <button type="button" onclick="window.location.href='{{ url_for('addwkst') }}';" class="btn btn-danger">Add Worksheet</button>
+</div>
     <script>
         function myFunction() {
             var input, filter, ul, li, a, i;
             input = document.getElementById("myInput");
             filter = input.value.toUpperCase();
-            ul = document.getElementById("myUL");
-            li = ul.getElementsByTagName("li");
+            ul = document.getElementById("accordions");
+            li = ul.getElementsByClassName("card");
             for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0];
+                a = li[i].getElementsByTagName("button")[0];
                 if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     li[i].style.display = "";
                 } else {
@@ -103,12 +255,12 @@
                 }
             }
         }
+        $("#form").submit(function(event) {
+            $("#form").reset();
+            event.preventDefault();
+        })
     </script>
 
-    <div class = "btn-block">
-        <button type="button" class = "btn btn-primary">Enrollment</button>
-        <button type="button" onclick="window.location.href='{{ url_for('addwkst') }}';" class="btn btn-danger">Add Worksheet</button>
-    </div>
 </div>
 
 

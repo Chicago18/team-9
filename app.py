@@ -131,10 +131,24 @@ def gameoptions():
 
     return redirect('login')
 
-@app.route('/games', methods=['GET'])
-def games():
+@app.route('/mathgame', methods=['GET'])
+def mathgame():
+    if g.user:
+        return render_template('mathgame.html')
+
+    return redirect('login')
+
+@app.route('/spellinggame', methods=['GET'])
+def spellinggame():
     if g.user:
         return render_template('game.html')
+
+    return redirect('login')
+
+@app.route('/addwkst', methods=['GET'])
+def addwkst():
+    if g.user:
+        return render_template('add-worksheet.html')
 
     return redirect('login')
 
