@@ -3,6 +3,9 @@
 Team 9 at JP Morgan Chase Code For Good
 Building a web applicaton for Chinese Mutual Aid Association
 
+
+
+#HOW IT WORKS
 <Log in page image>
 The application starts with a log in page where different username and password combinations allows parents, students, and administrators to access specific pages designed for them. 
 
