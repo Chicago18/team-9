@@ -1,5 +1,6 @@
 from flask import Flask, redirect, request, render_template, url_for, session, g
 import os
+import json
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -71,7 +72,9 @@ def forms():
 @app.route('/student', methods=['GET'])
 def student():
     if g.user:
-        return render_template('tasks.html')
+        with open('Unit.json') as f:
+            unit = json.load(f)
+            return render_template('students.html', unit=unit)
 
     return redirect('login')
 
