@@ -1,0 +1,59 @@
+.display-4 {
+    display: inline-block;
+}
+
+#back {
+    margin-bottom: 20px;
+}
+
+.lessons {
+    border: 1px solid #717171;
+    border-radius: 8px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.lesson:nth-of-type(n+2) {
+    border-top: 1px solid #717171;
+}
+
+.mc {
+    padding-top: 20px;
+    vertical-align: center;
+}
+
+button:active {
+    outline: none;
+    border: none;
+}
+
+button:focus {outline:none !important;}
+
+.mca {
+    cursor: pointer;
+    display: inline-block;
+    width: 15%;
+    height: 3em;
+    margin: 10px auto;
+    text-decoration: none;
+    border: 1px solid #717171;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.wrong {
+    background-color: #ff9592;
+}
+
+.correct {
+    background-color: #c1ffb0;
+}
+
+.hidden {
+    display: none;
+}
+
+.progress-bar {
+    margin-bottom: 30px;
+    height: 20px;
+}
