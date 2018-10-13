@@ -32,7 +32,9 @@
     </div>
 </nav>
 
-<h1 class="display-4">Lessons</h1>
+<div class="container">
+    <h1 class="display-4">Lessons</h1>
+</div>
 
 <div class="container lessons">
     {% set ns = namespace(loop=false) %}
@@ -83,6 +85,8 @@
 
 </div>
 
+<div class="container"><button id="back" type="button" class="btn btn-lg btn-secondary">Back</button></div>
+
 <!-- Footer
 <footer class="py-5 bg-danger">
   <div class="container">
@@ -95,7 +99,6 @@
     function mc(el, clicked, answer) {
         if (clicked == answer) {
             el.classList.add('correct');
-            // document.getElementsByClassName('answer')[0].classList.remove('hidden');
             el.parentElement.getElementsByClassName('answer')[0].classList.remove('hidden');
         } else {
             el.classList.add('wrong');
