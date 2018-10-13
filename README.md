@@ -7,7 +7,7 @@ Building a web applicaton for Chinese Mutual Aid Association
 
 ### How it work
 
-
+------------------------------------------------------------------------------------------
 ### User manual
 <Log in page image>
 The application starts with a log in page where different username and password combinations allows parents, students, and administrators to access specific pages designed for them. 
