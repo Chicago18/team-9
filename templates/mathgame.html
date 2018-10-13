@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CMAA Portal</title>
+
+    <!--Bootstrap, jQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top" id="mainNav">
+      <div class="container justify-content-start">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+          <img src="cmaa.gif" width="50" height="50" class="d-inline-block align-top" alt="">
+          <a class="text-white" style="font-size:24px">Chinese Mutual Aid Association</a>
+        </a>
+      </div><ul class="navbar-nav">
+      <li class="nav-item" id="logout" style="padding-right:200px;font-size:18px">
+        <a class="nav-link" href="#">Logout</a></li>
+    </ul>
+    </nav>
+  <div class="row justify-content-md-left" style="padding-left:100px;padding-top:50px">
+    <div class="col col-lg-2">
+      <button class="btn btn-light" style="background:none;font-size:40px"><a href="enrollment.html"><i class="fas fa-arrow-circle-left"></i></a></button>
+    </div>
+  </div>
+  <div class="jumbotron align-items-center text-center" style="background: linear-gradient(to bottom, #FFFFFF, #EF3B36);height:100vh;">
+     
+      <h1 class="display-5">Math Is Fun!</h1>
+      <p class="lead">Enter the product of the numbers below.</p>
+      
+      <div class="card" style="width: 9rem;margin-left:auto;margin-right: auto;">
+        <span id="time" style="font-size:30px;color:green;"></span>
+      </div>
+      <br>
+      
+      <span style="font-size:72px;"><span id="num1"></span> x <span id="num2"></span>  =</span>
+      <input type="number" id="ans" style="font-size:72px;width:140px;">
+     <br><br><br>
+     <p style="color:white;font-size:32px;"id="message"> </p>
+     <div class="progress" style="width:50vw;margin-left: auto;margin-right: auto;">
+      <div class="progress-bar bg-progress" id="pb" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+    </div><br><br>
+    <img id="star1" src="star.gif" style="width:50px;height:50px;display:none;">
+    <img id="star2" src="star.gif" style="width:50px;height:50px;display:none;">
+    <img id="star3" src="star.gif" style="width:50px;height:50px;display:none;">
+   </div>
+   <div class="modal fade" id="winner" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Fantastic work!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        You can get a prize!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  
+  function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+  $("#num1").text(getRandomArbitrary(1,10));
+  $("#num2").text(getRandomArbitrary(1,10));
+  function startTimer(duration, display) {
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        // get the number of seconds that have elapsed since 
+        // startTimer() was called
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+        // does the same job as parseInt truncates the float
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds; 
+        if (diff <= 4) {
+            // add one second so that the count down starts at the full duration
+            // example 05:00 not 04:59
+            $("#time").css("color","red");
+        }
+
+        if (diff <= 0) {
+            // add one second so that the count down starts at the full duration
+            // example 05:00 not 04:59
+            start = Date.now() + 1000;
+            $("#num1").text(getRandomArbitrary(1,10));
+            $("#num2").text(getRandomArbitrary(1,10));
+            $("#time").css("color","green");
+            $(".progressbar").css("width","-=10");
+            $("#message").text("Oops, try again!");
+            $("#pb").css("width","-=150");
+            $("#pb").css("background-color","red");
+        }
+    };
+    // we don't want to wait a full second before the timer starts
+    timer();
+    setInterval(timer, 1000);
+    $('#ans').keyup(function(e){
+      if(e.keyCode == 13)
+      {
+          if ($("#num1").text() * $("#num2").text() == $("#ans").val()) {
+            $("#num1").text(getRandomArbitrary(1,10));
+            $("#num2").text(getRandomArbitrary(1,10));
+            start = Date.now() + 1000;
+            $("#time").text("00:10");
+            $("#pb").css("width","+=150");
+            $("#pb").css("background-color","green");
+            $("#message").text("Great!");
+            $("#time").css("color","green");
+            console.log($("#pb").width());
+            if ($("#pb").width() >= 700) {
+              if ($("#star1").css("display") == "none") {
+                $("#star1").css("display","inline");
+                $("#winner").modal('show');
+                $("#close").on('click',function() {
+                  $("#winner").modal('show');
+                });
+              }
+              else if ($("#star2").css("display") == "none") {
+                $("#star2").css("display","inline");
+              }
+              else {
+                $("#star3").css("display","inline");
+                
+              }
+              $("#pb").css("width","400");
+            }
+          }
+          else {
+            $("#message").text("Oops, try again!");
+            $("#pb").css("width","-=150");
+            $("#pb").css("background-color","red");
+          }
+      }
+  });
+}
+
+window.onload = function () {
+    var tenSeconds = 10,
+        display = document.querySelector('#time');
+    startTimer(tenSeconds, display);
+};
+</script>
+  </body>
+
+</html>

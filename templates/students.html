@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CMAA Portal</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!--Bootstrap, jQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+
+<body id="page-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top" id="mainNav">
+    <div class="container justify-content-start">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <img src="cmaa.gif" width="50" height="50" class="d-inline-block align-top" alt="">
+            <a class="text-white" style="font-size:24px">Chinese Mutual Aid Association</a>
+        </a>
+
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="display-4">Lessons</h1>
+</div>
+
+<div class="container lessons">
+    {% set ns = namespace(loop=false) %}
+    {% for lesson in unit if not loop %}
+        {% for i in range(unit[lesson]|length) %}
+            <div class="{{unit[lesson][i].type}}">
+            {% if unit[lesson][i].type == "lesson" %}
+                <h2>{{unit[lesson][i].title}}</h2>
+                {% set text = unit[lesson][i].text.split('\n') %}
+                {% for para in text %}
+                <p>{{para}}</p>
+                {% endfor %}
+
+                <!-- Put Lesson Template Here -->
+
+            {% elif unit[lesson][i].type == "mc" %}
+
+                <div class="mcq">
+                    <h5>{{unit[lesson][i].question}}</h5>
+
+                    <button class="mca" onclick="mc(this, 'a', '{{unit[lesson][i].answer}}')">{{unit[lesson][i].a}}</button>
+                    <button class="mca" onclick="mc(this, 'b', '{{unit[lesson][i].answer}}')">{{unit[lesson][i].b}}</button>
+                    <button class="mca" onclick="mc(this, 'c', '{{unit[lesson][i].answer}}')">{{unit[lesson][i].c}}</button>
+                    <button class="mca" onclick="mc(this, 'd', '{{unit[lesson][i].answer}}')">{{unit[lesson][i].d}}</button>
+
+                    <div class="answer hidden alert alert-info" role="alert"><p>{{unit[lesson][i].explanation}}</p></div>
+                </div>
+                <!-- Put Multiple choice Template Here -->
+
+
+
+            {% else %}
+
+
+
+                <p>Something Else</p>
+                <!-- Add another elif for other unit components -->
+
+
+
+            {% endif %}
+            {% if not ns.loop %}
+                {% set ns.loop = true %}
+            {% endif %}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+</div>
+
+<div class="container"><button id="back" type="button" class="btn btn-lg btn-secondary">Back</button></div>
+
+<!-- Footer
+<footer class="py-5 bg-danger">
+  <div class="container">
+    <p class="m-0 text-center text-white">Code for Good Chicago 2018</p>
+  </div>
+</footer>-->
+
+<script>
+
+    function mc(el, clicked, answer) {
+        if (clicked == answer) {
+            el.classList.add('correct');
+            el.parentElement.getElementsByClassName('answer')[0].classList.remove('hidden');
+        } else {
+            el.classList.add('wrong');
+        }
+    }
+</script>
+
+</body>
+</html>
