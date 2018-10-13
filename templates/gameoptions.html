@@ -32,9 +32,8 @@
 <div class="container">
     <h1>Games</h1>
     <div class = "btn-group-horizonal btn-block">
-        <img src= "{{ url_for('static', filename='img/math1.png') }}"  height="300">
-        <img src= "{{ url_for('static', filename='img/math2.png') }}"  height="300">
-
+        <a href="{{ url_for('mathgame') }}"><img src= "{{ url_for('static', filename='img/math1.png') }}"  height="300">
+        <a href="{{ url_for('spellinggame') }}"><img src= "{{ url_for('static', filename='img/math2.png') }}"  height="300">
     </div>
 
 </div>
