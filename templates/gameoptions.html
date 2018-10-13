@@ -32,15 +32,15 @@
 <div class="container">
     <h1>Games</h1>
     <div class = "btn-group-horizonal btn-block">
-        <a href="{{ url_for('mathgame') }}"><img src= "{{ url_for('static', filename='img/math1.png') }}"  height="300">
-        <a href="{{ url_for('spellinggame') }}"><img src= "{{ url_for('static', filename='img/math2.png') }}"  height="300">
+        <a href="{{ url_for('mathgame') }}"><img src= "{{ url_for('static', filename='img/math1.png') }}"  height="300"></a>
+        <a href="{{ url_for('spellinggame') }}"><img src= "{{ url_for('static', filename='img/math2.png') }}"  height="300"></a>
     </div>
 
 </div>
 
 
 
-<div class="container"><button id="back" type="button" onclick="window.location.href='{{ url_for('studentoptions') }}';" class="btn btn-lg btn-secondary">Back</button></div>
+<div class="container"><button id="back" type="button" onclick="window.location.href='/studentoptions';" class="btn btn-lg btn-secondary">Back</button></div>
 
 
 
