@@ -75,8 +75,13 @@
           $("#form5").hasClass("list-group-item-success") &&
           $("#form6").hasClass("list-group-item-success")) {
           $("#status").text("Status: Complete!");
-          $("#status").removeClass("text-danger");
+          $("#status").removeClass("text-warning");
           $("#status").addClass("text-success");
+        }
+        if ($(".list-group-item").hasClass("list-group-item-success")) {
+          $("#status").text("Status: In Progress");
+          $("#status").removeClass("text-danger");
+          $("#status").addClass("text-warning");
         }
       });
     </script>
