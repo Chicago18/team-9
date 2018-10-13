@@ -236,8 +236,10 @@
   </div>
 </div>
 <div class = "btn-block">
-    <button type="button" class = "btn btn-primary">Enrollment</button>
     <button type="button" onclick="window.location.href='{{ url_for('addwkst') }}';" class="btn btn-danger">Add Worksheet</button>
+    <button id="notifs" class="btn btn-dark">Pending&nbsp;<span id="badgespan" class="badge badge-danger">1</span></button><br><br>
+<span id="pending" style="display:none"><a href="{{ url_for('static', filename='img/IntakeForm.pdf') }}" download>Chelsea's Intake Form</a></span>
+</div>
 </div>
     <script>
         function myFunction() {
@@ -258,7 +260,11 @@
         $("#form").submit(function(event) {
             $("#form").reset();
             event.preventDefault();
-        })
+        });
+        $("#notifs").on('click',function(event) {
+          $("#badgespan").text("");
+          $("#pending").css("display","inline");
+        });
     </script>
 
 </div>
