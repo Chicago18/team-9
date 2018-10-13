@@ -15,6 +15,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <style>
+    .list-group-item:hover{
+       background-color: LightGray;
+    }
+    .list-group-item:active{
+       background-color: green;
+    }
+    .list-group-item-success{
+
+    }
+    </style>
 
   </head>
 
@@ -31,17 +43,43 @@
       </div>
     </nav>
 
-    <div class="container">
-      <span style="font-size:24px;">Enrollment Checklist</span>
+    <div class="container align-middle">
+      <div class="row h-100">
+      <div class="col-sm-12 my-auto" style="padding-top:20px">
+      <div class="card card-body w-50 mx-auto" >
+              <div class="card-header">
+    <h3>Enrollment Checklist</h3>
+  </div>
       <ul class="list-group">
-        <li class="list-group-item">Client Intake Form</li>
-        <li class="list-group-item">Family Income Level</li>
-        <li class="list-group-item">Parent Consent Form</li>
-        <li class="list-group-item">Family Income Level</li>
-        <li class="list-group-item">Emergency Contact Form</li>
-        <li class="list-group-item">Sign Forms In-Person</li>
+        <li class="list-group-item" id="form1">Client Intake Form</li>
+        <li class="list-group-item" id="form2">Family Income Level</li>
+        <li class="list-group-item" id="form3">Parent Consent Form</li>
+        <li class="list-group-item" id="form4">Family Income Level</li>
+        <li class="list-group-item" id="form5">Emergency Contact Form</li>
+        <li class="list-group-item" id="form6">Sign Forms In-Person</li>
       </ul>
+      <br>
+      <h5 class="text-center text-danger" id="status">Status: Incomplete</h5>
     </div>
+    </div>
+    </div>
+    </div>
+
+    <script>
+      $( ".list-group-item" ).on( "click", function() {
+        $( this ).toggleClass( "list-group-item-success" );
+        if ($("#form1").hasClass("list-group-item-success") &&
+          $("#form2").hasClass("list-group-item-success") &&
+          $("#form3").hasClass("list-group-item-success") &&
+          $("#form4").hasClass("list-group-item-success") &&
+          $("#form5").hasClass("list-group-item-success") &&
+          $("#form6").hasClass("list-group-item-success")) {
+          $("#status").text("Status: Complete!");
+          $("#status").removeClass("text-danger");
+          $("#status").addClass("text-success");
+        }
+      });
+    </script>
   
 
     <!-- Footer
