@@ -56,9 +56,9 @@
      <div class="progress" style="width:50vw;margin-left: auto;margin-right: auto;">
       <div class="progress-bar bg-progress" id="pb" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
     </div><br><br>
-    <img id="star1" src="star.gif" style="width:50px;height:50px;display:none;">
-    <img id="star2" src="star.gif" style="width:50px;height:50px;display:none;">
-    <img id="star3" src="star.gif" style="width:50px;height:50px;display:none;">
+    <img id="star1" src="{{ url_for('static', filename='img/star.gif') }}" style="width:50px;height:50px;display:none;">
+    <img id="star2" src="{{ url_for('static', filename='img/star.gif') }}" style="width:50px;height:50px;display:none;">
+    <img id="star3" src="{{ url_for('static', filename='img/star.gif') }}" style="width:50px;height:50px;display:none;">
    </div>
    <div class="modal fade" id="winner" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
