@@ -29,26 +29,31 @@
 
     </div>
 </nav>
-<div class="container">
+<div class="container" style="width: 70%">
     <h1>Lessons</h1>
     {% set ns = namespace(loop=false) %}
     {% for lesson in unit if not loop %}
         {% for i in range(unit[lesson]|length) %}
+            <div class="{{unit[lesson][i].type}}">
             {% if unit[lesson][i].type == "lesson" %}
+                <h2>{{unit[lesson][i].title}}</h2>
+                {% set text = unit[lesson][i].text.split('\n') %}
+                {% for para in text %}
+                <p>{{para}}</p>
+                {% endfor %}
 
-
-
-
-                <p>Lesson!</p>
                 <!-- Put Lesson Template Here -->
 
-
-
             {% elif unit[lesson][i].type == "mc" %}
+                <p>{{unit[lesson][i].question}}</p>
+                <ul>
+                    <li>{{unit[lesson][i].a}}</li>
+                    <li>{{unit[lesson][i].b}}</li>
+                    <li>{{unit[lesson][i].c}}</li>
+                    <li>{{unit[lesson][i].d}}</li>
+                </ul>
 
-
-
-                <p>Multiple Choice</p>
+                <div class="answer hidden"><p>{{unit[lesson][i].explanation}}</p></div>
                 <!-- Put Multiple choice Template Here -->
 
 
@@ -75,6 +80,7 @@
             {% if not ns.loop %}
                 {% set ns.loop = true %}
             {% endif %}
+            </div>
         {% endfor %}
     {% endfor %}
 
